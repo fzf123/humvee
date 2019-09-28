@@ -5,7 +5,7 @@
 #include <atomic>
 #include <queue>
 
-namespace pebble {
+namespace humvee {
 
 template<typename T>
 class Queue {

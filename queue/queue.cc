@@ -1,6 +1,6 @@
 #include "queue.h"
 
-namespace pebble {
+namespace humvee {
 
 template<typename T>
 Queue<T>::Queue() {
