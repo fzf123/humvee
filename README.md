@@ -1,2 +1,3 @@
 # humvee
-## hello
+## queue
+bazel build //queue:queue
