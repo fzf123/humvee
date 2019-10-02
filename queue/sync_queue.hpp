@@ -7,7 +7,7 @@
 
 namespace humvee {
 
-template<class T>
+template<typename T>
 class SyncQueue {
 public:
     SyncQueue();
@@ -29,24 +29,24 @@ private:
     int _max_size;
 };
 
-template<class T>
+template<typename T>
 SyncQueue<T>::SyncQueue() {
     init(0);
 }
 
-template<class T>
+template<typename T>
 SyncQueue<T>::SyncQueue(int max_size) {
     init(max_size);
 }
 
-template<class T>
+template<typename T>
 SyncQueue<T>::~SyncQueue() {
     pthread_cond_destroy(&_q_no_empty);
     pthread_cond_destroy(&_q_no_full);
     pthread_mutex_destroy(&_qlock);
 }
 
-template<class T>
+template<typename T>
 void SyncQueue<T>::init(int max_size) {
     _max_size = max_size;
     _queue_size.store(0);
@@ -55,12 +55,12 @@ void SyncQueue<T>::init(int max_size) {
     pthread_mutex_init(&_qlock, NULL);
 }
 
-template<class T>
+template<typename T>
 bool SyncQueue<T>::empty() const {
     return _queue_size.load() <= 0;
 }
 
-template<class T>
+template<typename T>
 bool SyncQueue<T>::push(const T& obj, bool try_push) {
     pthread_mutex_lock(&_qlock);
     if (_max_size > 0) {
@@ -80,7 +80,7 @@ bool SyncQueue<T>::push(const T& obj, bool try_push) {
     return true;
 }
 
-template<class T>
+template<typename T>
 bool SyncQueue<T>::pop(T& obj, bool try_pop) {
     pthread_mutex_lock(&_qlock);
     while (_queue_size.load() <= 0) {
