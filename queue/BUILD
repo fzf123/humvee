@@ -1,5 +1,5 @@
 cc_library(
     name = 'queue',
-    srcs = ['queue.cc'],
-    hdrs = ['queue.h'],
+    hdrs = ['sync_queue.hpp'],
+    visibility = ["//visibility:public"],
 )
