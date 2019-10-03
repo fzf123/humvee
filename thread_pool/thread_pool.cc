@@ -2,6 +2,18 @@
 
 namespace humvee {
 
+ThreadPool::ThreadPool() {
+}
+
+ThreadPool::~ThreadPool() {
+    for (size_t i = 0; i < _pool.size(); ++i) {
+        if (_pool[i] != nullptr) {
+            delete _pool[i];
+        }
+    }
+    _pool.clear();
+}
+
 void ThreadPool::worker(uint32_t queue_index) {
     while (true) {
         bool task_sched = false;
